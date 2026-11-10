@@ -9,13 +9,21 @@ import NicknameWelcome from "./components/NicknameWelcome";
 const BONUS_KEY = "fruit-lottery-bonus-attempts";
 const SUBSCRIBED_EMAILS_KEY = "fruit-newsletter-subscribed-emails";
 
-const fruits = [
+type Fruit = {
+  name: string;
+  detail: string;
+  season: string;
+  image: string;
+  soldOut?: boolean;
+};
+
+const fruits: Fruit[] = [
   { name: "愛文芒果", detail: "屏東・枋山 · 1盒（20 kg）NT$4,380", season: "JUN — AUG", image: "/images/mango.jpg" },
   { name: "玉荷包荔枝", detail: "高雄・大樹 · 1盒（20 kg）NT$2,980", season: "MAY — JUL", image: "/images/lychee.jpg" },
   { name: "金鑽鳳梨", detail: "高雄・燕巢 · 1盒（20 kg）NT$1,180", season: "APR — AUG", image: "/images/pineapple.jpg" },
 ];
 
-const moreFruits = [
+const moreFruits: Fruit[] = [
   { name: "蘋果", detail: "梨山・和平 · 1盒（20 kg）NT$2,180", season: "AUG — NOV", image: "/images/apple.jpg" },
   { name: "香蕉", detail: "屏東・南州 · 暫時缺貨 · 1盒（20 kg）NT$980", season: "ALL YEAR", image: "/images/banana.jpg", soldOut: true },
   { name: "葡萄", detail: "彰化・大村 · 暫時缺貨 · 1盒（20 kg）NT$2,580", season: "JUL — SEP", image: "/images/grapes.jpg", soldOut: true },
