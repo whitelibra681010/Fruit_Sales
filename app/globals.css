@@ -20,7 +20,132 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #f4f0e8;
+  color: #183c35;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.glass-panel {
+  border: 1px solid rgb(255 255 255 / 0.62);
+  background: rgb(255 255 255 / 0.42);
+  box-shadow: 0 20px 55px rgb(24 60 53 / 0.08), inset 0 1px 0 rgb(255 255 255 / 0.85);
+  backdrop-filter: blur(22px);
+}
+
+/* Subtle scroll-driven movement with a static fallback for older browsers. */
+.parallax-hero {
+  will-change: transform;
+}
+
+.parallax-orbit {
+  will-change: transform;
+}
+
+@supports (animation-timeline: scroll()) {
+  .parallax-hero {
+    animation: hero-drift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 650px;
+  }
+
+  .parallax-orbit {
+    animation: orbit-drift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 800px;
+  }
+
+  .parallax-card,
+  #seasonal article {
+    animation: card-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+}
+
+@keyframes hero-drift {
+  from { transform: translateY(0) scale(1.03); }
+  to { transform: translateY(90px) scale(1.09); }
+}
+
+@keyframes orbit-drift {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(30px, 100px) rotate(28deg); }
+}
+
+@keyframes card-rise {
+  from { opacity: 0.35; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-hero,
+  .parallax-orbit,
+  .parallax-card,
+  #seasonal article {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 639px) {
+  #seasonal article > div:last-child {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  #seasonal article > div:last-child > div:last-child {
+    display: contents;
+  }
+
+  #seasonal article > div:last-child > div:last-child > div {
+    display: contents;
+  }
+
+  #seasonal article > div:last-child form {
+    position: static;
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  #seasonal article > div:last-child form + * {
+    display: none;
+  }
+}
+
+#seasonal article {
+  position: relative;
+  cursor: pointer;
+}
+
+#seasonal article::after {
+  content: "☝️";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 20;
+  font-size: 1.8rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) rotate(-8deg) scale(0.8);
+  filter: drop-shadow(2px 3px 0 rgb(24 60 53 / 0.18));
+  transition: opacity 180ms ease;
+}
+
+#seasonal article:hover::after,
+#seasonal article:focus-within::after {
+  opacity: 1;
+  animation: cute-finger-bounce 700ms ease-in-out infinite;
+}
+
+@keyframes cute-finger-bounce {
+  0%, 100% { transform: translateY(3px) rotate(-8deg) scale(0.95); }
+  50% { transform: translateY(-5px) rotate(5deg) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #seasonal article:hover::after,
+  #seasonal article:focus-within::after {
+    animation: none;
+  }
 }
