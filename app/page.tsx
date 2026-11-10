@@ -17,7 +17,7 @@ const fruits = [
 
 const moreFruits = [
   { name: "蘋果", detail: "梨山・和平 · 1盒（20 kg）NT$2,180", season: "AUG — NOV", image: "/images/apple.jpg" },
-  { name: "屏東香蕉", detail: "屏東・南州 · 暫時缺貨 · 1盒（20 kg）NT$980", season: "ALL YEAR", image: "/images/banana.jpg", soldOut: true },
+  { name: "香蕉", detail: "屏東・南州 · 暫時缺貨 · 1盒（20 kg）NT$980", season: "ALL YEAR", image: "/images/banana.jpg", soldOut: true },
   { name: "葡萄", detail: "彰化・大村 · 暫時缺貨 · 1盒（20 kg）NT$2,580", season: "JUL — SEP", image: "/images/grapes.jpg", soldOut: true },
   { name: "柳橙", detail: "台南・東山 · 1盒（20 kg）NT$1,180", season: "NOV — FEB", image: "/images/orange.jpg" },
   { name: "木瓜", detail: "高雄・六龜 · 1盒（20 kg）NT$1,580", season: "ALL YEAR", image: "/images/papaya.jpg" },
